@@ -83,13 +83,13 @@ const NAV = [
 ];
 
 const GALLERY = [
-  { src: gallery2, alt: "Ξαπλώστρες και ομπρέλες στην παραλία του JOJO Porto Rafti" },
-  { src: gallery1, alt: "Cocktails δίπλα στη θάλασσα στο JOJO Porto Rafti" },
-  { src: gallery6, alt: "Το bar του JOJO Porto Rafti με θέα στη θάλασσα" },
-  { src: gallery3, alt: "Πιάτα φαγητού στο beach bar JOJO Porto Rafti" },
-  { src: gallery4, alt: "Βραδινή ατμόσφαιρα στο JOJO Porto Rafti" },
-  { src: gallery5, alt: "Κύματα στην αμμουδιά του Πόρτο Ράφτη" },
+  { src: photo3.url, alt: "Ξαπλώστρες με ομπρέλες macramé στην παραλία του JOJO Porto Rafti" },
+  { src: photo2.url, alt: "Ξαπλώστρες δίπλα στη θάλασσα στο beach bar JOJO στο Πόρτο Ράφτη" },
+  { src: photo4.url, alt: "Τραπέζια στο deck του JOJO Porto Rafti με θέα στο ηλιοβασίλεμα" },
+  { src: photo1.url, alt: "Ο εσωτερικός χώρος του JOJO Porto Rafti με ξύλινο deck και θέα στη θάλασσα" },
+  { src: photo5.url, alt: "Η είσοδος του beach bar JOJO στο Πόρτο Ράφτη" },
 ];
+
 
 const REVIEWS = [
   {
