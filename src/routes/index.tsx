@@ -476,25 +476,16 @@ function Index() {
         </p>
       </footer>
 
-      {/* ---------- Floating call + WhatsApp (mobile-first) ---------- */}
+      {/* ---------- Floating call button (mobile-first) ---------- */}
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/95 px-4 py-3 backdrop-blur-md sm:inset-x-auto sm:right-6 sm:bottom-6 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0 sm:backdrop-blur-none">
-        <div className="flex gap-3 sm:flex-col">
-          <a
-            href={PHONE_TEL}
-            className="flex-1 rounded-full bg-ocean px-5 py-3 text-center text-sm font-semibold text-accent-foreground shadow-lift transition-transform hover:scale-[1.03]"
-          >
-            📞 Καλέστε μας
-          </a>
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-primary-foreground shadow-lift transition-transform hover:scale-[1.03]"
-          >
-            💬 WhatsApp
-          </a>
-        </div>
+        <a
+          href={PHONE_TEL}
+          className="block rounded-full bg-ocean px-5 py-3 text-center text-sm font-semibold text-accent-foreground shadow-lift transition-transform hover:scale-[1.03]"
+        >
+          📞 Καλέστε μας
+        </a>
       </div>
+
       <div className="h-16 sm:h-0" aria-hidden="true" />
     </div>
   );
