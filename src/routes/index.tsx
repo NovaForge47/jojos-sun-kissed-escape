@@ -233,14 +233,6 @@ function Index() {
               Καλέστε μας
             </a>
             <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-white/95 px-7 py-3.5 text-base font-semibold text-foreground shadow-lift transition-transform hover:scale-[1.03]"
-            >
-              WhatsApp
-            </a>
-            <a
               href={MAPS_LINK}
               target="_blank"
               rel="noopener noreferrer"
