@@ -3,22 +3,22 @@ import { useEffect, useState } from "react";
 
 import heroImg from "@/assets/hero.jpg";
 import logoImg from "@/assets/logo.png";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-import gallery6 from "@/assets/gallery-6.jpg";
+import photo1 from "@/assets/photo-1.jpg.asset.json";
+import photo2 from "@/assets/photo-2.jpg.asset.json";
+import photo3 from "@/assets/photo-3.jpg.asset.json";
+import photo4 from "@/assets/photo-4.jpg.asset.json";
+import photo5 from "@/assets/photo-5.jpg.asset.json";
 
 const PHONE_DISPLAY = "694 931 8998";
 const PHONE_TEL = "tel:+306949318998";
-const WHATSAPP = "https://wa.me/306949318998";
 const MAPS_LINK =
   "https://www.google.com/maps/search/?api=1&query=JOJO+Porto+Rafti+Λεωφόρος+Αυλακίου+62+Πόρτο+Ράφτη";
 const MAP_EMBED =
   "https://www.google.com/maps?q=" +
   encodeURIComponent("Λεωφόρος Αυλακίου 62, Πόρτο Ράφτη 19003") +
   "&hl=el&z=15&output=embed";
+const OG_IMAGE = "https://jojo.gr" + photo4.url;
+
 
 export const Route = createFileRoute("/")({
   component: Index,
