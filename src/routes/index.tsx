@@ -3,60 +3,103 @@ import { useEffect, useState } from "react";
 
 import heroImg from "@/assets/hero.jpg";
 import logoImg from "@/assets/logo.png";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-import gallery6 from "@/assets/gallery-6.jpg";
+import photo1 from "@/assets/photo-1.jpg.asset.json";
+import photo2 from "@/assets/photo-2.jpg.asset.json";
+import photo3 from "@/assets/photo-3.jpg.asset.json";
+import photo4 from "@/assets/photo-4.jpg.asset.json";
+import photo5 from "@/assets/photo-5.jpg.asset.json";
 
 const PHONE_DISPLAY = "694 931 8998";
 const PHONE_TEL = "tel:+306949318998";
-const WHATSAPP = "https://wa.me/306949318998";
 const MAPS_LINK =
   "https://www.google.com/maps/search/?api=1&query=JOJO+Porto+Rafti+Λεωφόρος+Αυλακίου+62+Πόρτο+Ράφτη";
 const MAP_EMBED =
   "https://www.google.com/maps?q=" +
   encodeURIComponent("Λεωφόρος Αυλακίου 62, Πόρτο Ράφτη 19003") +
   "&hl=el&z=15&output=embed";
+const OG_IMAGE = "https://jojo.gr" + photo4.url;
+
 
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "JOJO Porto Rafti | All Day Beach Bar στο Πόρτο Ράφτη" },
+      { title: "JOJO Porto Rafti | Beach Bar στο Πόρτο Ράφτη" },
       {
         name: "description",
         content:
           "JOJO Porto Rafti beach bar: ξαπλώστρες στη θάλασσα, cocktails και φαγητό στο Πόρτο Ράφτη. Ανοιχτά καθημερινά 09:00–03:00. Τηλ. 694 931 8998.",
       },
-      { property: "og:title", content: "JOJO Porto Rafti | All Day Beach Bar" },
+      { property: "og:title", content: "JOJO Porto Rafti | Beach Bar στο Πόρτο Ράφτη" },
       {
         property: "og:description",
         content:
           "Ο απόλυτος καλοκαιρινός προορισμός στο Πόρτο Ράφτη. Beach bar όλη μέρα, καθημερινά 09:00–03:00.",
       },
-      { property: "og:url", content: "/" },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "el_GR" },
+      { property: "og:site_name", content: "JOJO Porto Rafti" },
+      { property: "og:url", content: "https://jojo.gr/" },
+      { property: "og:image", content: OG_IMAGE },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "JOJO Porto Rafti | Beach Bar στο Πόρτο Ράφτη" },
+      {
+        name: "twitter:description",
+        content: "Beach bar όλη μέρα στο Πόρτο Ράφτη. Ξαπλώστρες, cocktails και φαγητό δίπλα στο κύμα.",
+      },
+      { name: "twitter:image", content: OG_IMAGE },
+      { name: "geo.region", content: "GR-A1" },
+      { name: "geo.placename", content: "Πόρτο Ράφτη" },
+      { name: "geo.position", content: "37.8836;24.0140" },
+      { name: "ICBM", content: "37.8836, 24.0140" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://jojo.gr/" }],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BarOrPub",
+          "@id": "https://jojo.gr/#business",
           name: "JOJO Porto Rafti",
-          description: "All day beach bar στο Πόρτο Ράφτη.",
+          alternateName: "JOJO Beach Bar Πόρτο Ράφτη",
+          description:
+            "All day beach bar στο Πόρτο Ράφτη με ξαπλώστρες στη θάλασσα, cocktails και φαγητό, ανοιχτά καθημερινά 09:00–03:00.",
+          url: "https://jojo.gr/",
+          image: [OG_IMAGE, "https://jojo.gr" + photo3.url],
           telephone: "+306949318998",
           email: "jojoportorafti@gmail.com",
+          priceRange: "€€",
+          currenciesAccepted: "EUR",
+          servesCuisine: ["Cocktails", "Μεσογειακή", "Θαλασσινά"],
+          areaServed: ["Πόρτο Ράφτη", "Μαρκόπουλο", "Αθήνα", "Ανατολική Αττική"],
           address: {
             "@type": "PostalAddress",
             streetAddress: "Λεωφόρος Αυλακίου 62",
             addressLocality: "Πόρτο Ράφτη",
+            addressRegion: "Αττική",
             postalCode: "19003",
             addressCountry: "GR",
           },
-          openingHours: "Mo-Su 09:00-03:00",
+          geo: { "@type": "GeoCoordinates", latitude: 37.8836, longitude: 24.014 },
+          hasMap: MAPS_LINK,
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+              ],
+              opens: "09:00",
+              closes: "03:00",
+            },
+          ],
           aggregateRating: {
             "@type": "AggregateRating",
             ratingValue: "4.2",
@@ -70,7 +113,18 @@ export const Route = createFileRoute("/")({
           ],
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "JOJO Porto Rafti",
+          url: "https://jojo.gr/",
+          inLanguage: "el",
+        }),
+      },
     ],
+
   }),
 });
 
@@ -83,13 +137,13 @@ const NAV = [
 ];
 
 const GALLERY = [
-  { src: gallery2, alt: "Ξαπλώστρες και ομπρέλες στην παραλία του JOJO Porto Rafti" },
-  { src: gallery1, alt: "Cocktails δίπλα στη θάλασσα στο JOJO Porto Rafti" },
-  { src: gallery6, alt: "Το bar του JOJO Porto Rafti με θέα στη θάλασσα" },
-  { src: gallery3, alt: "Πιάτα φαγητού στο beach bar JOJO Porto Rafti" },
-  { src: gallery4, alt: "Βραδινή ατμόσφαιρα στο JOJO Porto Rafti" },
-  { src: gallery5, alt: "Κύματα στην αμμουδιά του Πόρτο Ράφτη" },
+  { src: photo3.url, alt: "Ξαπλώστρες με ομπρέλες macramé στην παραλία του JOJO Porto Rafti" },
+  { src: photo2.url, alt: "Ξαπλώστρες δίπλα στη θάλασσα στο beach bar JOJO στο Πόρτο Ράφτη" },
+  { src: photo4.url, alt: "Τραπέζια στο deck του JOJO Porto Rafti με θέα στο ηλιοβασίλεμα" },
+  { src: photo1.url, alt: "Ο εσωτερικός χώρος του JOJO Porto Rafti με ξύλινο deck και θέα στη θάλασσα" },
+  { src: photo5.url, alt: "Η είσοδος του beach bar JOJO στο Πόρτο Ράφτη" },
 ];
+
 
 const REVIEWS = [
   {
@@ -231,14 +285,6 @@ function Index() {
               className="rounded-full bg-ocean px-7 py-3.5 text-base font-semibold text-accent-foreground shadow-lift transition-transform hover:scale-[1.03]"
             >
               Καλέστε μας
-            </a>
-            <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-white/95 px-7 py-3.5 text-base font-semibold text-foreground shadow-lift transition-transform hover:scale-[1.03]"
-            >
-              WhatsApp
             </a>
             <a
               href={MAPS_LINK}
@@ -433,14 +479,6 @@ function Index() {
                 >
                   Καλέστε μας
                 </a>
-                <a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-border px-6 py-3 text-center text-sm font-semibold transition-colors hover:bg-secondary"
-                >
-                  WhatsApp
-                </a>
               </div>
 
               <div className="mt-8 border-t border-border pt-6">
@@ -484,25 +522,16 @@ function Index() {
         </p>
       </footer>
 
-      {/* ---------- Floating call + WhatsApp (mobile-first) ---------- */}
+      {/* ---------- Floating call button (mobile-first) ---------- */}
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/95 px-4 py-3 backdrop-blur-md sm:inset-x-auto sm:right-6 sm:bottom-6 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0 sm:backdrop-blur-none">
-        <div className="flex gap-3 sm:flex-col">
-          <a
-            href={PHONE_TEL}
-            className="flex-1 rounded-full bg-ocean px-5 py-3 text-center text-sm font-semibold text-accent-foreground shadow-lift transition-transform hover:scale-[1.03]"
-          >
-            📞 Καλέστε μας
-          </a>
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-primary-foreground shadow-lift transition-transform hover:scale-[1.03]"
-          >
-            💬 WhatsApp
-          </a>
-        </div>
+        <a
+          href={PHONE_TEL}
+          className="block rounded-full bg-ocean px-5 py-3 text-center text-sm font-semibold text-accent-foreground shadow-lift transition-transform hover:scale-[1.03]"
+        >
+          📞 Καλέστε μας
+        </a>
       </div>
+
       <div className="h-16 sm:h-0" aria-hidden="true" />
     </div>
   );
