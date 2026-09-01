@@ -425,14 +425,6 @@ function Index() {
                 >
                   Καλέστε μας
                 </a>
-                <a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-border px-6 py-3 text-center text-sm font-semibold transition-colors hover:bg-secondary"
-                >
-                  WhatsApp
-                </a>
               </div>
 
               <div className="mt-8 border-t border-border pt-6">
