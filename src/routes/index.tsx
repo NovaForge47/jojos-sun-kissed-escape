@@ -24,39 +24,82 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "JOJO Porto Rafti | All Day Beach Bar στο Πόρτο Ράφτη" },
+      { title: "JOJO Porto Rafti | Beach Bar στο Πόρτο Ράφτη" },
       {
         name: "description",
         content:
           "JOJO Porto Rafti beach bar: ξαπλώστρες στη θάλασσα, cocktails και φαγητό στο Πόρτο Ράφτη. Ανοιχτά καθημερινά 09:00–03:00. Τηλ. 694 931 8998.",
       },
-      { property: "og:title", content: "JOJO Porto Rafti | All Day Beach Bar" },
+      { property: "og:title", content: "JOJO Porto Rafti | Beach Bar στο Πόρτο Ράφτη" },
       {
         property: "og:description",
         content:
           "Ο απόλυτος καλοκαιρινός προορισμός στο Πόρτο Ράφτη. Beach bar όλη μέρα, καθημερινά 09:00–03:00.",
       },
-      { property: "og:url", content: "/" },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "el_GR" },
+      { property: "og:site_name", content: "JOJO Porto Rafti" },
+      { property: "og:url", content: "https://jojo.gr/" },
+      { property: "og:image", content: OG_IMAGE },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "JOJO Porto Rafti | Beach Bar στο Πόρτο Ράφτη" },
+      {
+        name: "twitter:description",
+        content: "Beach bar όλη μέρα στο Πόρτο Ράφτη. Ξαπλώστρες, cocktails και φαγητό δίπλα στο κύμα.",
+      },
+      { name: "twitter:image", content: OG_IMAGE },
+      { name: "geo.region", content: "GR-A1" },
+      { name: "geo.placename", content: "Πόρτο Ράφτη" },
+      { name: "geo.position", content: "37.8836;24.0140" },
+      { name: "ICBM", content: "37.8836, 24.0140" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://jojo.gr/" }],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BarOrPub",
+          "@id": "https://jojo.gr/#business",
           name: "JOJO Porto Rafti",
-          description: "All day beach bar στο Πόρτο Ράφτη.",
+          alternateName: "JOJO Beach Bar Πόρτο Ράφτη",
+          description:
+            "All day beach bar στο Πόρτο Ράφτη με ξαπλώστρες στη θάλασσα, cocktails και φαγητό, ανοιχτά καθημερινά 09:00–03:00.",
+          url: "https://jojo.gr/",
+          image: [OG_IMAGE, "https://jojo.gr" + photo3.url],
           telephone: "+306949318998",
           email: "jojoportorafti@gmail.com",
+          priceRange: "€€",
+          currenciesAccepted: "EUR",
+          servesCuisine: ["Cocktails", "Μεσογειακή", "Θαλασσινά"],
+          areaServed: ["Πόρτο Ράφτη", "Μαρκόπουλο", "Αθήνα", "Ανατολική Αττική"],
           address: {
             "@type": "PostalAddress",
             streetAddress: "Λεωφόρος Αυλακίου 62",
             addressLocality: "Πόρτο Ράφτη",
+            addressRegion: "Αττική",
             postalCode: "19003",
             addressCountry: "GR",
           },
-          openingHours: "Mo-Su 09:00-03:00",
+          geo: { "@type": "GeoCoordinates", latitude: 37.8836, longitude: 24.014 },
+          hasMap: MAPS_LINK,
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+              ],
+              opens: "09:00",
+              closes: "03:00",
+            },
+          ],
           aggregateRating: {
             "@type": "AggregateRating",
             ratingValue: "4.2",
@@ -70,7 +113,18 @@ export const Route = createFileRoute("/")({
           ],
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "JOJO Porto Rafti",
+          url: "https://jojo.gr/",
+          inLanguage: "el",
+        }),
+      },
     ],
+
   }),
 });
 
