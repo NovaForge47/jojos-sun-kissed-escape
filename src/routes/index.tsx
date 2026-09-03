@@ -128,31 +128,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const NAV = [
-  { href: "#about", label: "Σχετικά" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#events", label: "Events" },
-  { href: "#reviews", label: "Κριτικές" },
-  { href: "#contact", label: "Επικοινωνία" },
-];
-
-const GALLERY = [
-  { src: photo3.url, alt: "Ξαπλώστρες με ομπρέλες macramé στην παραλία του JOJO Porto Rafti" },
-  { src: photo2.url, alt: "Ξαπλώστρες δίπλα στη θάλασσα στο beach bar JOJO στο Πόρτο Ράφτη" },
-  { src: photo4.url, alt: "Τραπέζια στο deck του JOJO Porto Rafti με θέα στο ηλιοβασίλεμα" },
-  { src: photo1.url, alt: "Ο εσωτερικός χώρος του JOJO Porto Rafti με ξύλινο deck και θέα στη θάλασσα" },
-  { src: photo5.url, alt: "Η είσοδος του beach bar JOJO στο Πόρτο Ράφτη" },
-];
-
-
-const REVIEWS = [
-  {
-    name: "Andrea Dawson",
-    text: "Περάσαμε ένα υπέροχο απόγευμα χαλαρώνοντας σε ξαπλώστρα στην παραλία. Ο σερβιτόρος μας ήταν καταπληκτικός — προσεκτικός, ευγενικός και αποτελεσματικός όλο το απόγευμα. Τα ποτά ήταν εξαιρετικά, το φαγητό νόστιμο, και όλη η ατμόσφαιρα υπέροχη. Σίγουρα θα ξανάρθουμε!",
-  },
-  { name: "Dimitris Marantis", text: "Ωραίο beach bar 🌊" },
-  { name: "Bo Pro", text: "Υπέροχα cocktails, υπέροχο προσωπικό!" },
-];
+const GALLERY_SRC = [photo3.url, photo2.url, photo4.url, photo1.url, photo5.url];
 
 const SOCIALS = [
   { label: "Instagram", href: "https://www.instagram.com/jojoportorafti" },
@@ -189,7 +165,51 @@ function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
   );
 }
 
+function LangToggle({ scrolled }: { scrolled: boolean }) {
+  const { lang, setLang, t } = useLanguage();
+  const base =
+    "rounded-full px-2.5 py-1 text-xs font-semibold tracking-[0.12em] transition-colors";
+  return (
+    <div
+      aria-label={t.langLabel}
+      className={`flex items-center gap-0.5 rounded-full p-0.5 ${
+        scrolled ? "bg-secondary" : "bg-white/20 backdrop-blur-sm"
+      }`}
+    >
+      {(["el", "en"] as const).map((code) => {
+        const active = lang === code;
+        return (
+          <button
+            key={code}
+            type="button"
+            onClick={() => setLang(code)}
+            aria-pressed={active}
+            className={`${base} ${
+              active
+                ? "bg-ocean text-accent-foreground"
+                : scrolled
+                  ? "text-muted-foreground hover:text-foreground"
+                  : "text-white/90 hover:text-white"
+            }`}
+          >
+            {code === "el" ? "ΕΛ" : "EN"}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 function Index() {
+  return (
+    <LanguageProvider>
+      <PageContent />
+    </LanguageProvider>
+  );
+}
+
+function PageContent() {
+  const { lang, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -200,7 +220,7 @@ function Index() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" lang={lang}>
       {/* ---------- Top nav ---------- */}
       <nav
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -227,25 +247,28 @@ function Index() {
               JOJO
             </span>
           </a>
-          <div className="hidden items-center gap-6 md:flex">
-            {NAV.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`text-sm transition-colors hover:text-ocean ${
-                  scrolled ? "text-muted-foreground" : "text-white/90 drop-shadow"
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
+          <div className="flex items-center gap-3 md:gap-6">
+            <div className="hidden items-center gap-6 md:flex">
+              {t.nav.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`text-sm transition-colors hover:text-ocean ${
+                    scrolled ? "text-muted-foreground" : "text-white/90 drop-shadow"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+            <LangToggle scrolled={scrolled} />
+            <a
+              href={PHONE_TEL}
+              className="rounded-full bg-ocean px-4 py-2 text-sm font-semibold text-accent-foreground shadow-soft transition-transform hover:scale-[1.03] md:hidden"
+            >
+              {t.navCall}
+            </a>
           </div>
-          <a
-            href={PHONE_TEL}
-            className="rounded-full bg-ocean px-4 py-2 text-sm font-semibold text-accent-foreground shadow-soft transition-transform hover:scale-[1.03] md:hidden"
-          >
-            Καλέστε
-          </a>
         </div>
       </nav>
 
@@ -253,7 +276,7 @@ function Index() {
       <header id="hero" className="relative isolate min-h-[100svh] overflow-hidden">
         <img
           src={heroImg}
-          alt="Beach bar JOJO στο Πόρτο Ράφτη το ηλιοβασίλεμα"
+          alt={t.hero.imageAlt}
           width={1920}
           height={1280}
           fetchPriority="high"
@@ -264,7 +287,7 @@ function Index() {
         <div className="mx-auto flex min-h-[100svh] max-w-3xl flex-col items-center justify-center px-5 py-28 text-center">
           <img
             src={logoImg}
-            alt="Λογότυπο JOJO Porto Rafti"
+            alt={t.hero.logoAlt}
             width={816}
             height={816}
             className="fade-up h-28 w-28 object-contain sm:h-36 sm:w-36"
@@ -273,10 +296,10 @@ function Index() {
             JOJO <span className="italic text-champagne">Porto Rafti</span>
           </h1>
           <p className="fade-up mt-4 max-w-xl text-balance text-lg text-white/90 sm:text-xl">
-            Ο απόλυτος καλοκαιρινός προορισμός στο Πόρτο Ράφτη
+            {t.hero.tagline}
           </p>
           <p className="fade-up mt-2 text-sm tracking-[0.2em] text-champagne uppercase">
-            Beach bar όλη μέρα 🏖️
+            {t.hero.subtext}
           </p>
 
           <div className="fade-up mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
@@ -284,7 +307,7 @@ function Index() {
               href={PHONE_TEL}
               className="rounded-full bg-ocean px-7 py-3.5 text-base font-semibold text-accent-foreground shadow-lift transition-transform hover:scale-[1.03]"
             >
-              Καλέστε μας
+              {t.hero.call}
             </a>
             <a
               href={MAPS_LINK}
@@ -292,55 +315,40 @@ function Index() {
               rel="noopener noreferrer"
               className="rounded-full border border-white/70 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white/15"
             >
-              Δείτε στον χάρτη
+              {t.hero.map}
             </a>
           </div>
 
-          <p className="fade-up mt-8 text-sm text-white/80">
-            Ανοιχτά καθημερινά · 09:00 – 03:00
-          </p>
+          <p className="fade-up mt-8 text-sm text-white/80">{t.hero.hours}</p>
         </div>
       </header>
 
       <main>
         {/* ---------- Σχετικά ---------- */}
         <section id="about" className="mx-auto max-w-3xl px-5 py-20 sm:py-28">
-          <SectionTitle kicker="beach bar" title="Σχετικά με το JOJO" />
+          <SectionTitle kicker={t.about.kicker} title={t.about.title} />
           <div className="space-y-5 text-center text-base leading-relaxed text-muted-foreground sm:text-lg">
-            <p>
-              Το JOJO είναι ένα all day beach bar στο Πόρτο Ράφτη, λίγα μόλις λεπτά από την
-              Αθήνα. Ξαπλώστρες δίπλα στο κύμα, απαλή μουσική και η θάλασσα μπροστά σου — εδώ η
-              μέρα ξεκινάει χαλαρά με καφέ στον ήλιο και τελειώνει αργά το βράδυ με ποτό κάτω
-              από τα αστέρια.
-            </p>
-            <p>
-              Από το πρωί στις 9 μέχρι τις 3 τα ξημερώματα, σε περιμένουν φροντισμένα cocktails,
-              νόστιμο φαγητό και μια κουζίνα που δουλεύει όλη μέρα. Είτε έρθεις για μπάνιο και
-              μεσημεριανό, είτε για sunset drinks με παρέα, βρίσκεις πάντα τη θέση σου.
-            </p>
-            <p>
-              Αυτό που κρατάει τον κόσμο εδώ είναι η φιλοξενία: ζεστή, προσεγμένη εξυπηρέτηση
-              που σε κάνει να νιώθεις οικεία από την πρώτη στιγμή. Γι' αυτό το JOJO δεν είναι
-              απλώς μια στάση στη διαδρομή — είναι ο καλοκαιρινός σου προορισμός.
-            </p>
+            {t.about.paragraphs.map((p) => (
+              <p key={p.slice(0, 24)}>{p}</p>
+            ))}
           </div>
         </section>
 
         {/* ---------- Gallery ---------- */}
         <section id="gallery" className="bg-sand py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-5">
-            <SectionTitle kicker="στιγμές" title="Gallery" />
+            <SectionTitle kicker={t.gallery.kicker} title={t.gallery.title} />
             <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-              {GALLERY.map((img, i) => (
+              {GALLERY_SRC.map((src, i) => (
                 <figure
-                  key={img.alt}
+                  key={src}
                   className={`group overflow-hidden rounded-3xl shadow-soft ${
                     i === 0 ? "col-span-2 lg:col-span-2 lg:row-span-2" : ""
                   }`}
                 >
                   <img
-                    src={img.src}
-                    alt={img.alt}
+                    src={src}
+                    alt={t.gallery.alts[i]}
                     width={1024}
                     height={1024}
                     loading="lazy"
@@ -354,19 +362,15 @@ function Index() {
 
         {/* ---------- Events ----------
             TEMPLATE SECTION: no real event data yet.
-            Add upcoming events to the `events` array below (title, date, time,
-            description, optional image) and the grid will render them.
+            Add upcoming events to an `events` array (title, date, time,
+            description, optional image) and render them in the grid.
             The empty state shows until then. */}
         <section id="events" className="mx-auto max-w-5xl px-5 py-20 sm:py-28">
-          <SectionTitle kicker="μουσική & βραδιές" title="Events" />
+          <SectionTitle kicker={t.events.kicker} title={t.events.title} />
           <div className="surface-card mx-auto max-w-2xl px-6 py-12 text-center sm:px-10">
             <Wave className="mx-auto" />
-            <h3 className="mt-4 text-2xl">Έρχονται σύντομα</h3>
-            <p className="mt-3 text-muted-foreground">
-              Ετοιμάζουμε τις καλοκαιρινές μας βραδιές με μουσική, DJ sets και ξεχωριστά
-              parties δίπλα στη θάλασσα. Ακολούθησέ μας στα social ή πάρε μας τηλέφωνο για το
-              πρόγραμμα.
-            </p>
+            <h3 className="mt-4 text-2xl">{t.events.soon}</h3>
+            <p className="mt-3 text-muted-foreground">{t.events.text}</p>
             <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
               <a
                 href="https://www.instagram.com/jojoportorafti"
@@ -374,13 +378,13 @@ function Index() {
                 rel="noopener noreferrer"
                 className="rounded-full bg-ocean px-6 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:scale-[1.03]"
               >
-                Δες το Instagram
+                {t.events.instagram}
               </a>
               <a
                 href={PHONE_TEL}
                 className="rounded-full border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-secondary"
               >
-                Καλέστε μας
+                {t.events.call}
               </a>
             </div>
           </div>
@@ -389,18 +393,18 @@ function Index() {
         {/* ---------- Κριτικές ---------- */}
         <section id="reviews" className="bg-sand py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-5">
-            <SectionTitle kicker="τι λένε οι επισκέπτες" title="Κριτικές" />
+            <SectionTitle kicker={t.reviews.kicker} title={t.reviews.title} />
             <div className="mb-10 flex justify-center">
               <div className="flex items-center gap-3 rounded-full bg-card px-6 py-3 shadow-soft">
                 <span className="text-2xl font-semibold">4.2</span>
                 <span className="text-xl text-champagne-deep">★</span>
-                <span className="text-sm text-muted-foreground">139 κριτικές</span>
+                <span className="text-sm text-muted-foreground">{t.reviews.count}</span>
               </div>
             </div>
             <div className="grid gap-5 md:grid-cols-3">
-              {REVIEWS.map((r) => (
+              {t.reviews.items.map((r) => (
                 <blockquote key={r.name} className="surface-card flex flex-col p-7">
-                  <div className="text-champagne-deep" aria-label="5 αστέρια">
+                  <div className="text-champagne-deep" aria-label={t.reviews.starsLabel}>
                     ★★★★★
                   </div>
                   <p className="mt-4 flex-1 leading-relaxed text-muted-foreground">“{r.text}”</p>
@@ -413,11 +417,11 @@ function Index() {
 
         {/* ---------- Τοποθεσία & Επικοινωνία ---------- */}
         <section id="contact" className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
-          <SectionTitle kicker="θα σε βρούμε εδώ" title="Τοποθεσία & Επικοινωνία" />
+          <SectionTitle kicker={t.contact.kicker} title={t.contact.title} />
           <div className="grid gap-6 lg:grid-cols-2">
             <div className="surface-card overflow-hidden">
               <iframe
-                title="Χάρτης — JOJO Porto Rafti, Λεωφόρος Αυλακίου 62, Πόρτο Ράφτη"
+                title={t.contact.mapTitle}
                 src={MAP_EMBED}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -429,13 +433,13 @@ function Index() {
               <dl className="space-y-6 text-base">
                 <div>
                   <dt className="text-xs tracking-[0.18em] text-muted-foreground uppercase">
-                    Διεύθυνση
+                    {t.contact.addressLabel}
                   </dt>
-                  <dd className="mt-1">Λεωφόρος Αυλακίου 62, Πόρτο Ράφτη, Αθήνα, 19003</dd>
+                  <dd className="mt-1">{t.contact.address}</dd>
                 </div>
                 <div>
                   <dt className="text-xs tracking-[0.18em] text-muted-foreground uppercase">
-                    Τηλέφωνο
+                    {t.contact.phoneLabel}
                   </dt>
                   <dd className="mt-1">
                     <a href={PHONE_TEL} className="font-semibold text-ocean hover:underline">
@@ -445,7 +449,7 @@ function Index() {
                 </div>
                 <div>
                   <dt className="text-xs tracking-[0.18em] text-muted-foreground uppercase">
-                    Email
+                    {t.contact.emailLabel}
                   </dt>
                   <dd className="mt-1">
                     <a
@@ -458,9 +462,9 @@ function Index() {
                 </div>
                 <div>
                   <dt className="text-xs tracking-[0.18em] text-muted-foreground uppercase">
-                    Ώρες λειτουργίας
+                    {t.contact.hoursLabel}
                   </dt>
-                  <dd className="mt-1">Ανοιχτά καθημερινά, 09:00 – 03:00</dd>
+                  <dd className="mt-1">{t.contact.hours}</dd>
                 </div>
               </dl>
 
@@ -471,19 +475,19 @@ function Index() {
                   rel="noopener noreferrer"
                   className="rounded-full bg-ocean px-6 py-3 text-center text-sm font-semibold text-accent-foreground transition-transform hover:scale-[1.03]"
                 >
-                  Πάρτε οδηγίες
+                  {t.contact.directions}
                 </a>
                 <a
                   href={PHONE_TEL}
                   className="rounded-full bg-primary px-6 py-3 text-center text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
                 >
-                  Καλέστε μας
+                  {t.contact.call}
                 </a>
               </div>
 
               <div className="mt-8 border-t border-border pt-6">
                 <p className="text-xs tracking-[0.18em] text-muted-foreground uppercase">
-                  Ακολουθήστε μας
+                  {t.contact.followLabel}
                 </p>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {SOCIALS.map((s) => (
@@ -516,10 +520,8 @@ function Index() {
           className="mx-auto h-14 w-14 object-contain"
         />
         <p className="mt-3 text-sm tracking-[0.2em] uppercase">JOJO Porto Rafti</p>
-        <p className="script-accent mt-1 text-lg">beach bar</p>
-        <p className="mt-4 text-xs text-primary-foreground/70">
-          Λεωφόρος Αυλακίου 62, Πόρτο Ράφτη · Καθημερινά 09:00 – 03:00
-        </p>
+        <p className="script-accent mt-1 text-lg">{t.footer.script}</p>
+        <p className="mt-4 text-xs text-primary-foreground/70">{t.footer.line}</p>
       </footer>
 
       {/* ---------- Floating call button (mobile-first) ---------- */}
@@ -528,7 +530,7 @@ function Index() {
           href={PHONE_TEL}
           className="block rounded-full bg-ocean px-5 py-3 text-center text-sm font-semibold text-accent-foreground shadow-lift transition-transform hover:scale-[1.03]"
         >
-          📞 Καλέστε μας
+          {t.floatingCall}
         </a>
       </div>
 
@@ -536,3 +538,4 @@ function Index() {
     </div>
   );
 }
+
