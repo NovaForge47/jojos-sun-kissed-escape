@@ -160,6 +160,63 @@ function Wave({ className = "" }: { className?: string }) {
   );
 }
 
+function GalleryCarousel({ alts }: { alts: readonly string[] }) {
+  const trackRef = useRef<HTMLUListElement>(null);
+
+  const scrollBy = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const step = el.firstElementChild?.clientWidth ?? el.clientWidth;
+    el.scrollBy({ left: dir * (step + 16), behavior: "smooth" });
+  };
+
+  const arrow =
+    "absolute top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card/90 text-lg shadow-soft transition-colors hover:bg-card sm:flex";
+
+  return (
+    <div className="relative">
+      <ul
+        ref={trackRef}
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {GALLERY_SRC.map((src, i) => (
+          <li
+            key={src}
+            className="w-[85%] shrink-0 snap-start sm:w-[48%] lg:w-[32%]"
+          >
+            <figure className="group overflow-hidden rounded-3xl shadow-soft">
+              <img
+                src={src}
+                alt={alts[i]}
+                width={1024}
+                height={768}
+                loading="lazy"
+                className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </figure>
+          </li>
+        ))}
+      </ul>
+      <button
+        type="button"
+        aria-label="Previous"
+        onClick={() => scrollBy(-1)}
+        className={`${arrow} left-2`}
+      >
+        ‹
+      </button>
+      <button
+        type="button"
+        aria-label="Next"
+        onClick={() => scrollBy(1)}
+        className={`${arrow} right-2`}
+      >
+        ›
+      </button>
+    </div>
+  );
+}
+
 function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
   return (
     <header className="mb-8 text-center">
