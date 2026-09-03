@@ -85,6 +85,13 @@ export const content = {
       call: "Καλέστε μας",
       followLabel: "Ακολουθήστε μας",
     },
+    leaveReview: {
+      kicker: "η γνώμη σου μετράει",
+      title: "Αφήστε μας μια κριτική",
+      text: "Πέρασες όμορφα στο JOJO; Μοιράσου την εμπειρία σου — μας βοηθάει πραγματικά και δείχνει τον δρόμο σε νέους επισκέπτες.",
+      google: "Κριτική στη Google",
+      tripadvisor: "Κριτική στο Tripadvisor",
+    },
     footer: {
       script: "beach bar",
       line: "Λεωφόρος Αυλακίου 62, Πόρτο Ράφτη · Καθημερινά 09:00 – 03:00",
@@ -165,6 +172,13 @@ export const content = {
       directions: "Get directions",
       call: "Call us",
       followLabel: "Follow us",
+    },
+    leaveReview: {
+      kicker: "your opinion matters",
+      title: "Leave us a review",
+      text: "Did you enjoy your time at JOJO? Share your experience — it really helps us and guides new visitors our way.",
+      google: "Review on Google",
+      tripadvisor: "Review on Tripadvisor",
     },
     footer: {
       script: "beach bar",
