@@ -285,10 +285,10 @@ function PageContent() {
       {/* ---------- Hero ---------- */}
       <header id="hero" className="relative isolate min-h-[100svh] overflow-hidden">
         <img
-          src={heroImg}
+          src={heroAsset.url}
           alt={t.hero.imageAlt}
-          width={1920}
-          height={1280}
+          width={1179}
+          height={771}
           fetchPriority="high"
           className="absolute inset-0 -z-10 h-full w-full object-cover"
         />
@@ -348,25 +348,26 @@ function PageContent() {
         <section id="gallery" className="bg-sand py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-5">
             <SectionTitle kicker={t.gallery.kicker} title={t.gallery.title} />
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-              {GALLERY_SRC.map((src, i) => (
-                <figure
-                  key={src}
-                  className={`group overflow-hidden rounded-3xl shadow-soft ${
-                    i === 0 ? "col-span-2 lg:col-span-2 lg:row-span-2" : ""
-                  }`}
-                >
-                  <img
-                    src={src}
-                    alt={t.gallery.alts[i]}
-                    width={1024}
-                    height={1024}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </figure>
-              ))}
-            </div>
+            <Carousel opts={{ loop: true, align: "start" }} className="w-full">
+              <CarouselContent className="-ml-3 sm:-ml-4">
+                {GALLERY_SRC.map((src, i) => (
+                  <CarouselItem key={src} className="pl-3 sm:pl-4 md:basis-1/2 lg:basis-1/3">
+                    <figure className="group overflow-hidden rounded-3xl shadow-soft">
+                      <img
+                        src={src}
+                        alt={t.gallery.alts[i]}
+                        width={1024}
+                        height={1024}
+                        loading="lazy"
+                        className="aspect-[4/3] h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </figure>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-2 border-border bg-card/90 text-foreground hover:bg-card" />
+              <CarouselNext className="right-2 border-border bg-card/90 text-foreground hover:bg-card" />
+            </Carousel>
           </div>
         </section>
 
