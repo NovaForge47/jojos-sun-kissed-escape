@@ -3,7 +3,15 @@ import { useEffect, useState } from "react";
 
 import { LanguageProvider, useLanguage } from "@/lib/i18n";
 
-import heroImg from "@/assets/hero.jpg";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+import heroAsset from "@/assets/hero-sunset.jpg.asset.json";
 import logoImg from "@/assets/logo.png";
 import photo1 from "@/assets/photo-1.jpg.asset.json";
 import photo2 from "@/assets/photo-2.jpg.asset.json";
