@@ -3,7 +3,15 @@ import { useEffect, useState } from "react";
 
 import { LanguageProvider, useLanguage } from "@/lib/i18n";
 
-import heroImg from "@/assets/hero.jpg";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+import heroAsset from "@/assets/hero-sunset.jpg.asset.json";
 import logoImg from "@/assets/logo.png";
 import photo1 from "@/assets/photo-1.jpg.asset.json";
 import photo2 from "@/assets/photo-2.jpg.asset.json";
@@ -20,6 +28,10 @@ const MAP_EMBED =
   encodeURIComponent("Λεωφόρος Αυλακίου 62, Πόρτο Ράφτη 19003") +
   "&hl=el&z=15&output=embed";
 const OG_IMAGE = "https://jojo.gr" + photo4.url;
+const GOOGLE_REVIEW_LINK =
+  "https://www.google.com/search?client=safari&hs=EltV&sca_esv=d777865217e22ae8&hl=en-gr&sxsrf=APpeQnsMJYrHFVn_1NusD0fGTX0tFLwHhg:1788442797076&q=buddha+all-day+beach+bar+restaurant+porto+rafti+reviews&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4r9o8EtIr7w4auRdy15uM4Z4EHnbQu6rvVfO9wYzZ2msJbW-m2eVaFxBbTPfmUdG2Ey6UXDIdCvfr5q3ED1pp-sYosbGgf0ddhLt03GGUlGK0E6BmwDE7ISvc9eESAmKfDSoPCcMeP61r1GDt4_sN5Uzfk3HBIgh-mGgg_tSyI2upuY7Mifwx9G8KEldZmpOzNXx_REX_zmdltbtWYnuyiHnaPXmc&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_50HyrpuqFI335dM5CnVEHF9MSCyffo3V-4PSzLyvtyd8h9xJA7E_3bFmCD5MdVwV4DO9IVKTz-ZJwRpuMsKeyb5n0HPh5pXEnyNdAoJbDPvn4bcv3_VMYjVEUjgMBY1bjdIGhU%3D&sa=X&ved=2ahUKEwjQnfvMxNKWAxUHRvEDHct3CbcQxKsJKAF6BAgTEAE&ictx=1";
+const TRIPADVISOR_REVIEW_LINK =
+  "https://www.tripadvisor.com/UserReviewEdit-g1137879-d34407116-Jojo_Beach_Porto_Rafti-Porto_Rafti_East_Attica_Region_Attica.html";
 
 
 export const Route = createFileRoute("/")({
@@ -277,10 +289,10 @@ function PageContent() {
       {/* ---------- Hero ---------- */}
       <header id="hero" className="relative isolate min-h-[100svh] overflow-hidden">
         <img
-          src={heroImg}
+          src={heroAsset.url}
           alt={t.hero.imageAlt}
-          width={1920}
-          height={1280}
+          width={1179}
+          height={771}
           fetchPriority="high"
           className="absolute inset-0 -z-10 h-full w-full object-cover"
         />
@@ -340,25 +352,26 @@ function PageContent() {
         <section id="gallery" className="bg-sand py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-5">
             <SectionTitle kicker={t.gallery.kicker} title={t.gallery.title} />
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-              {GALLERY_SRC.map((src, i) => (
-                <figure
-                  key={src}
-                  className={`group overflow-hidden rounded-3xl shadow-soft ${
-                    i === 0 ? "col-span-2 lg:col-span-2 lg:row-span-2" : ""
-                  }`}
-                >
-                  <img
-                    src={src}
-                    alt={t.gallery.alts[i]}
-                    width={1024}
-                    height={1024}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </figure>
-              ))}
-            </div>
+            <Carousel opts={{ loop: true, align: "start" }} className="w-full">
+              <CarouselContent className="-ml-3 sm:-ml-4">
+                {GALLERY_SRC.map((src, i) => (
+                  <CarouselItem key={src} className="pl-3 sm:pl-4 md:basis-1/2 lg:basis-1/3">
+                    <figure className="group overflow-hidden rounded-3xl shadow-soft">
+                      <img
+                        src={src}
+                        alt={t.gallery.alts[i]}
+                        width={1024}
+                        height={1024}
+                        loading="lazy"
+                        className="aspect-[4/3] h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </figure>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-2 border-border bg-card/90 text-foreground hover:bg-card" />
+              <CarouselNext className="right-2 border-border bg-card/90 text-foreground hover:bg-card" />
+            </Carousel>
           </div>
         </section>
 
@@ -506,6 +519,35 @@ function PageContent() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* ---------- Αφήστε κριτική ---------- */}
+        <section id="leave-review" className="bg-sand py-20 sm:py-28">
+          <div className="mx-auto max-w-3xl px-5">
+            <SectionTitle kicker={t.leaveReview.kicker} title={t.leaveReview.title} />
+            <div className="surface-card px-6 py-10 text-center sm:px-10">
+              <p className="mx-auto max-w-xl leading-relaxed text-muted-foreground">
+                {t.leaveReview.text}
+              </p>
+              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+                <a
+                  href={GOOGLE_REVIEW_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-ocean px-6 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:scale-[1.03]"
+                >
+                  ★ {t.leaveReview.google}
+                </a>
+                <a
+                  href={TRIPADVISOR_REVIEW_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-secondary"
+                >
+                  ★ {t.leaveReview.tripadvisor}
+                </a>
               </div>
             </div>
           </div>
