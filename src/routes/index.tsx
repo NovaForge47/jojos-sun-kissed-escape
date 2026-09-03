@@ -519,6 +519,35 @@ function PageContent() {
             </div>
           </div>
         </section>
+        {/* ---------- Αφήστε κριτική ---------- */}
+        <section id="leave-review" className="bg-sand py-20 sm:py-28">
+          <div className="mx-auto max-w-3xl px-5">
+            <SectionTitle kicker={t.leaveReview.kicker} title={t.leaveReview.title} />
+            <div className="surface-card px-6 py-10 text-center sm:px-10">
+              <p className="mx-auto max-w-xl leading-relaxed text-muted-foreground">
+                {t.leaveReview.text}
+              </p>
+              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+                <a
+                  href={GOOGLE_REVIEW_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-ocean px-6 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:scale-[1.03]"
+                >
+                  ★ {t.leaveReview.google}
+                </a>
+                <a
+                  href={TRIPADVISOR_REVIEW_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-secondary"
+                >
+                  ★ {t.leaveReview.tripadvisor}
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer className="bg-primary py-10 text-center text-primary-foreground">
