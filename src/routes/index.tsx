@@ -28,6 +28,10 @@ const MAP_EMBED =
   encodeURIComponent("Λεωφόρος Αυλακίου 62, Πόρτο Ράφτη 19003") +
   "&hl=el&z=15&output=embed";
 const OG_IMAGE = "https://jojo.gr" + photo4.url;
+const GOOGLE_REVIEW_LINK =
+  "https://www.google.com/search?client=safari&hs=EltV&sca_esv=d777865217e22ae8&hl=en-gr&sxsrf=APpeQnsMJYrHFVn_1NusD0fGTX0tFLwHhg:1788442797076&q=buddha+all-day+beach+bar+restaurant+porto+rafti+reviews&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4r9o8EtIr7w4auRdy15uM4Z4EHnbQu6rvVfO9wYzZ2msJbW-m2eVaFxBbTPfmUdG2Ey6UXDIdCvfr5q3ED1pp-sYosbGgf0ddhLt03GGUlGK0E6BmwDE7ISvc9eESAmKfDSoPCcMeP61r1GDt4_sN5Uzfk3HBIgh-mGgg_tSyI2upuY7Mifwx9G8KEldZmpOzNXx_REX_zmdltbtWYnuyiHnaPXmc&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_50HyrpuqFI335dM5CnVEHF9MSCyffo3V-4PSzLyvtyd8h9xJA7E_3bFmCD5MdVwV4DO9IVKTz-ZJwRpuMsKeyb5n0HPh5pXEnyNdAoJbDPvn4bcv3_VMYjVEUjgMBY1bjdIGhU%3D&sa=X&ved=2ahUKEwjQnfvMxNKWAxUHRvEDHct3CbcQxKsJKAF6BAgTEAE&ictx=1";
+const TRIPADVISOR_REVIEW_LINK =
+  "https://www.tripadvisor.com/UserReviewEdit-g1137879-d34407116-Jojo_Beach_Porto_Rafti-Porto_Rafti_East_Attica_Region_Attica.html";
 
 
 export const Route = createFileRoute("/")({
