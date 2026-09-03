@@ -1,15 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { LanguageProvider, useLanguage } from "@/lib/i18n";
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 import heroAsset from "@/assets/hero-sunset.jpg.asset.json";
 import logoImg from "@/assets/logo.png";
