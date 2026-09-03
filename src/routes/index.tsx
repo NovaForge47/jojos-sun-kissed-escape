@@ -345,26 +345,7 @@ function PageContent() {
         <section id="gallery" className="bg-sand py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-5">
             <SectionTitle kicker={t.gallery.kicker} title={t.gallery.title} />
-            <Carousel opts={{ loop: true, align: "start" }} className="w-full">
-              <CarouselContent className="-ml-3 sm:-ml-4">
-                {GALLERY_SRC.map((src, i) => (
-                  <CarouselItem key={src} className="pl-3 sm:pl-4 md:basis-1/2 lg:basis-1/3">
-                    <figure className="group overflow-hidden rounded-3xl shadow-soft">
-                      <img
-                        src={src}
-                        alt={t.gallery.alts[i]}
-                        width={1024}
-                        height={1024}
-                        loading="lazy"
-                        className="aspect-[4/3] h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    </figure>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-2 border-border bg-card/90 text-foreground hover:bg-card" />
-              <CarouselNext className="right-2 border-border bg-card/90 text-foreground hover:bg-card" />
-            </Carousel>
+            <GalleryCarousel alts={t.gallery.alts} />
           </div>
         </section>
 
