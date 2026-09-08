@@ -453,6 +453,17 @@ function PageContent() {
           </div>
         </section>
 
+        {/* ---------- Menu ---------- */}
+        <section id="menu" className="bg-sand py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-5">
+            <MenuSection
+              kicker={t.menu.kicker}
+              title={t.menu.title}
+              categories={t.menu.categories}
+            />
+          </div>
+        </section>
+
         {/* ---------- Gallery ---------- */}
         <section id="gallery" className="bg-sand py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-5">
