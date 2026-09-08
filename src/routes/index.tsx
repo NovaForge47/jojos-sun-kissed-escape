@@ -229,6 +229,61 @@ function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
   );
 }
 
+type MenuItem = { readonly name: string; readonly description?: string; readonly price: string };
+type MenuCategory = { readonly title: string; readonly note?: string; readonly items: readonly MenuItem[] };
+
+function MenuSection({
+  kicker,
+  title,
+  categories,
+}: {
+  kicker: string;
+  title: string;
+  categories: readonly MenuCategory[];
+}) {
+  return (
+    <>
+      <SectionTitle kicker={kicker} title={title} />
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {categories.map((cat) => (
+          <div
+            key={cat.title}
+            className="surface-card flex flex-col p-5 text-left sm:p-6"
+          >
+            <h3 className="mb-1 text-lg font-semibold tracking-wide">
+              {cat.title}
+            </h3>
+            {cat.note && (
+              <p className="mb-3 text-xs italic text-muted-foreground">
+                {cat.note}
+              </p>
+            )}
+            <ul className="space-y-3">
+              {cat.items.map((item) => (
+                <li key={item.name} className="flex flex-col gap-0.5">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="font-medium leading-snug">{item.name}</span>
+                    {item.price && (
+                      <span className="shrink-0 text-sm font-semibold text-champagne-deep">
+                        {item.price}
+                      </span>
+                    )}
+                  </div>
+                  {item.description && (
+                    <span className="text-sm leading-snug text-muted-foreground">
+                      {item.description}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
 function LangToggle({ scrolled }: { scrolled: boolean }) {
   const { lang, setLang, t } = useLanguage();
   const base =
@@ -395,6 +450,17 @@ function PageContent() {
             {t.about.paragraphs.map((p) => (
               <p key={p.slice(0, 24)}>{p}</p>
             ))}
+          </div>
+        </section>
+
+        {/* ---------- Menu ---------- */}
+        <section id="menu" className="bg-sand py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-5">
+            <MenuSection
+              kicker={t.menu.kicker}
+              title={t.menu.title}
+              categories={t.menu.categories}
+            />
           </div>
         </section>
 
