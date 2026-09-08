@@ -565,17 +565,6 @@ function PageContent() {
         <p className="mt-4 text-xs text-primary-foreground/70">{t.footer.line}</p>
       </footer>
 
-      {/* ---------- Floating call button (mobile-first) ---------- */}
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/95 px-4 py-3 backdrop-blur-md sm:inset-x-auto sm:right-6 sm:bottom-6 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0 sm:backdrop-blur-none">
-        <a
-          href={PHONE_TEL}
-          className="block rounded-full bg-ocean px-5 py-3 text-center text-sm font-semibold text-accent-foreground shadow-lift transition-transform hover:scale-[1.03]"
-        >
-          {t.floatingCall}
-        </a>
-      </div>
-
-      <div className="h-16 sm:h-0" aria-hidden="true" />
     </div>
   );
 }
