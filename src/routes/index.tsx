@@ -229,8 +229,8 @@ function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
   );
 }
 
-type MenuItem = { name: string; description?: string; price: string };
-type MenuCategory = { title: string; note?: string; items: MenuItem[] };
+type MenuItem = { readonly name: string; readonly description?: string; readonly price: string };
+type MenuCategory = { readonly title: string; readonly note?: string; readonly items: readonly MenuItem[] };
 
 function MenuSection({
   kicker,
