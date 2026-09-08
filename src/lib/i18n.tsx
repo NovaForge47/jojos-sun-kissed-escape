@@ -262,7 +262,7 @@ export const content = {
     ],
     menuPage: { backHome: "← Back to home" },
     menuCta: {
-      text: "Coffees, fresh juices, smoothies, breakfast, toasts, appetizers, bruschetta, pinza, ice cream and granitas — all day by the sea.",
+      text: "Start your day with coffee by the waves, enjoy refreshing cocktails, fresh juices and delicious bites from morning until midnight — all by the sea.",
       button: "See our menu",
     },
     navCall: "Call",
