@@ -251,17 +251,29 @@ function PageContent() {
           </a>
           <div className="flex items-center gap-3 md:gap-6">
             <div className="hidden items-center gap-6 md:flex">
-              {t.nav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={`text-sm transition-colors hover:text-ocean ${
-                    scrolled ? "text-muted-foreground" : "text-white/90 drop-shadow"
-                  }`}
-                >
-                  {item.label}
-                </a>
-              ))}
+              {t.nav.map((item) =>
+                item.href === "/menu" ? (
+                  <Link
+                    key={item.href}
+                    to="/menu"
+                    className={`text-sm transition-colors hover:text-ocean ${
+                      scrolled ? "text-muted-foreground" : "text-white/90 drop-shadow"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={`text-sm transition-colors hover:text-ocean ${
+                      scrolled ? "text-muted-foreground" : "text-white/90 drop-shadow"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                ),
+              )}
             </div>
             <LangToggle scrolled={scrolled} />
             <a
@@ -336,14 +348,19 @@ function PageContent() {
           </div>
         </section>
 
-        {/* ---------- Menu ---------- */}
+        {/* ---------- Menu teaser ---------- */}
         <section id="menu" className="bg-sand py-20 sm:py-28">
-          <div className="mx-auto max-w-6xl px-5">
-            <MenuSection
-              kicker={t.menu.kicker}
-              title={t.menu.title}
-              categories={t.menu.categories}
-            />
+          <div className="mx-auto max-w-2xl px-5 text-center">
+            <SectionTitle title={t.menu.title} />
+            <p className="leading-relaxed text-muted-foreground sm:text-lg">
+              {t.menuCta.text}
+            </p>
+            <Link
+              to="/menu"
+              className="mt-8 inline-block rounded-full bg-ocean px-8 py-3.5 text-base font-semibold text-accent-foreground shadow-lift transition-transform hover:scale-[1.03]"
+            >
+              {t.menuCta.button}
+            </Link>
           </div>
         </section>
 
