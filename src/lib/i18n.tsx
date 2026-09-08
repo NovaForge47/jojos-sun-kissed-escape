@@ -14,12 +14,17 @@ export const content = {
   el: {
     nav: [
       { href: "#about", label: "Σχετικά" },
-      { href: "#menu", label: "Μενού" },
+      { href: "/menu", label: "Μενού" },
       { href: "#gallery", label: "Gallery" },
       { href: "#events", label: "Events" },
       { href: "#reviews", label: "Κριτικές" },
       { href: "#contact", label: "Επικοινωνία" },
     ],
+    menuPage: { backHome: "← Αρχική σελίδα" },
+    menuCta: {
+      text: "Καφέδες, φρέσκοι χυμοί, smoothies, πρωινό, τοστ, ορεκτικά, bruschetta, pinza, παγωτό και γρανίτες — όλη μέρα δίπλα στη θάλασσα.",
+      button: "Δείτε το μενού",
+    },
     navCall: "Καλέστε",
     hero: {
       logoAlt: "Λογότυπο JOJO Porto Rafti",
@@ -40,7 +45,6 @@ export const content = {
       ],
     },
     menu: {
-      kicker: "δοκιμάστε κάτι νόστιμο",
       title: "Jojo Menu",
       categories: [
         {
@@ -250,12 +254,17 @@ export const content = {
   en: {
     nav: [
       { href: "#about", label: "About" },
-      { href: "#menu", label: "Menu" },
+      { href: "/menu", label: "Menu" },
       { href: "#gallery", label: "Gallery" },
       { href: "#events", label: "Events" },
       { href: "#reviews", label: "Reviews" },
       { href: "#contact", label: "Contact" },
     ],
+    menuPage: { backHome: "← Back to home" },
+    menuCta: {
+      text: "Coffees, fresh juices, smoothies, breakfast, toasts, appetizers, bruschetta, pinza, ice cream and granitas — all day by the sea.",
+      button: "See our menu",
+    },
     navCall: "Call",
     hero: {
       logoAlt: "JOJO Porto Rafti logo",
@@ -276,7 +285,6 @@ export const content = {
       ],
     },
     menu: {
-      kicker: "taste something delicious",
       title: "Jojo Menu",
       categories: [
         {
