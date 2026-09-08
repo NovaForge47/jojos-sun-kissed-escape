@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
 import { LanguageProvider, useLanguage } from "@/lib/i18n";
+import { LangToggle, SectionTitle, Wave } from "@/components/sections";
 
 
 import heroAsset from "@/assets/hero-sunset.jpg.asset.json";
@@ -144,22 +145,6 @@ const SOCIALS = [
   { label: "YouTube", href: "https://www.youtube.com/@JoJoPortoRafti" },
 ];
 
-function Wave({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 120 12"
-      aria-hidden="true"
-      className={`h-3 w-24 text-ocean ${className}`}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-    >
-      <path d="M2 8c6-6 12-6 18 0s12 6 18 0 12-6 18 0 12 6 18 0 12-6 18 0 12 6 18 0" />
-    </svg>
-  );
-}
-
 function GalleryCarousel({ alts }: { alts: readonly string[] }) {
   const trackRef = useRef<HTMLUListElement>(null);
 
@@ -217,108 +202,6 @@ function GalleryCarousel({ alts }: { alts: readonly string[] }) {
   );
 }
 
-function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
-  return (
-    <header className="mb-8 text-center">
-      <p className="script-accent text-lg">{kicker}</p>
-      <h2 className="mt-1 text-3xl sm:text-4xl">{title}</h2>
-      <div className="mt-3 flex justify-center">
-        <Wave />
-      </div>
-    </header>
-  );
-}
-
-type MenuItem = { readonly name: string; readonly description?: string; readonly price: string };
-type MenuCategory = { readonly title: string; readonly note?: string; readonly items: readonly MenuItem[] };
-
-function MenuSection({
-  kicker,
-  title,
-  categories,
-}: {
-  kicker: string;
-  title: string;
-  categories: readonly MenuCategory[];
-}) {
-  return (
-    <>
-      <SectionTitle kicker={kicker} title={title} />
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {categories.map((cat) => (
-          <div
-            key={cat.title}
-            className="surface-card flex flex-col p-5 text-left sm:p-6"
-          >
-            <h3 className="mb-1 text-lg font-semibold tracking-wide">
-              {cat.title}
-            </h3>
-            {cat.note && (
-              <p className="mb-3 text-xs italic text-muted-foreground">
-                {cat.note}
-              </p>
-            )}
-            <ul className="space-y-3">
-              {cat.items.map((item) => (
-                <li key={item.name} className="flex flex-col gap-0.5">
-                  <div className="flex items-baseline justify-between gap-3">
-                    <span className="font-medium leading-snug">{item.name}</span>
-                    {item.price && (
-                      <span className="shrink-0 text-sm font-semibold text-champagne-deep">
-                        {item.price}
-                      </span>
-                    )}
-                  </div>
-                  {item.description && (
-                    <span className="text-sm leading-snug text-muted-foreground">
-                      {item.description}
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </>
-  );
-}
-
-function LangToggle({ scrolled }: { scrolled: boolean }) {
-  const { lang, setLang, t } = useLanguage();
-  const base =
-    "rounded-full px-2.5 py-1 text-xs font-semibold tracking-[0.12em] transition-colors";
-  return (
-    <div
-      aria-label={t.langLabel}
-      className={`flex items-center gap-0.5 rounded-full p-0.5 ${
-        scrolled ? "bg-secondary" : "bg-white/20 backdrop-blur-sm"
-      }`}
-    >
-      {(["el", "en"] as const).map((code) => {
-        const active = lang === code;
-        return (
-          <button
-            key={code}
-            type="button"
-            onClick={() => setLang(code)}
-            aria-pressed={active}
-            className={`${base} ${
-              active
-                ? "bg-ocean text-accent-foreground"
-                : scrolled
-                  ? "text-muted-foreground hover:text-foreground"
-                  : "text-white/90 hover:text-white"
-            }`}
-          >
-            {code === "el" ? "ΕΛ" : "EN"}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
 function Index() {
   return (
     <LanguageProvider>
@@ -368,17 +251,29 @@ function PageContent() {
           </a>
           <div className="flex items-center gap-3 md:gap-6">
             <div className="hidden items-center gap-6 md:flex">
-              {t.nav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={`text-sm transition-colors hover:text-ocean ${
-                    scrolled ? "text-muted-foreground" : "text-white/90 drop-shadow"
-                  }`}
-                >
-                  {item.label}
-                </a>
-              ))}
+              {t.nav.map((item) =>
+                item.href === "/menu" ? (
+                  <Link
+                    key={item.href}
+                    to="/menu"
+                    className={`text-sm transition-colors hover:text-ocean ${
+                      scrolled ? "text-muted-foreground" : "text-white/90 drop-shadow"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={`text-sm transition-colors hover:text-ocean ${
+                      scrolled ? "text-muted-foreground" : "text-white/90 drop-shadow"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                ),
+              )}
             </div>
             <LangToggle scrolled={scrolled} />
             <a
@@ -453,14 +348,19 @@ function PageContent() {
           </div>
         </section>
 
-        {/* ---------- Menu ---------- */}
+        {/* ---------- Menu teaser ---------- */}
         <section id="menu" className="bg-sand py-20 sm:py-28">
-          <div className="mx-auto max-w-6xl px-5">
-            <MenuSection
-              kicker={t.menu.kicker}
-              title={t.menu.title}
-              categories={t.menu.categories}
-            />
+          <div className="mx-auto max-w-2xl px-5 text-center">
+            <SectionTitle title={t.menu.title} />
+            <p className="leading-relaxed text-muted-foreground sm:text-lg">
+              {t.menuCta.text}
+            </p>
+            <Link
+              to="/menu"
+              className="mt-8 inline-block rounded-full bg-ocean px-8 py-3.5 text-base font-semibold text-accent-foreground shadow-lift transition-transform hover:scale-[1.03]"
+            >
+              {t.menuCta.button}
+            </Link>
           </div>
         </section>
 
