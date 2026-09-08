@@ -22,7 +22,7 @@ export const content = {
     ],
     menuPage: { backHome: "← Αρχική σελίδα" },
     menuCta: {
-      text: "Καφέδες, φρέσκοι χυμοί, smoothies, πρωινό, τοστ, ορεκτικά, bruschetta, pinza, παγωτό και γρανίτες — όλη μέρα δίπλα στη θάλασσα.",
+      text: "Ξεκινήστε τη μέρα σας με καφέ στο κύμα, απολαύστε δροσερά cocktails, φρέσκους χυμούς και λαχταριστές γεύσεις από το πρωί ως τα μεσάνυχτα — όλα δίπλα στη θάλασσα.",
       button: "Δείτε το μενού",
     },
     navCall: "Καλέστε",
@@ -262,7 +262,7 @@ export const content = {
     ],
     menuPage: { backHome: "← Back to home" },
     menuCta: {
-      text: "Coffees, fresh juices, smoothies, breakfast, toasts, appetizers, bruschetta, pinza, ice cream and granitas — all day by the sea.",
+      text: "Start your day with coffee by the waves, enjoy refreshing cocktails, fresh juices and delicious bites from morning until midnight — all by the sea.",
       button: "See our menu",
     },
     navCall: "Call",
