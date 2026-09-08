@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
 import { LanguageProvider, useLanguage } from "@/lib/i18n";
+import { LangToggle, SectionTitle, Wave } from "@/components/sections";
 
 
 import heroAsset from "@/assets/hero-sunset.jpg.asset.json";
@@ -143,22 +144,6 @@ const SOCIALS = [
   { label: "TikTok", href: "https://www.tiktok.com/@jojoportorafti" },
   { label: "YouTube", href: "https://www.youtube.com/@JoJoPortoRafti" },
 ];
-
-function Wave({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 120 12"
-      aria-hidden="true"
-      className={`h-3 w-24 text-ocean ${className}`}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-    >
-      <path d="M2 8c6-6 12-6 18 0s12 6 18 0 12-6 18 0 12 6 18 0 12-6 18 0 12 6 18 0" />
-    </svg>
-  );
-}
 
 function GalleryCarousel({ alts }: { alts: readonly string[] }) {
   const trackRef = useRef<HTMLUListElement>(null);
