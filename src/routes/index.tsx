@@ -317,12 +317,20 @@ function PageContent() {
             {t.hero.subtext}
           </p>
 
-          <div className="fade-up mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+          <div className="fade-up mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
             <a
               href={PHONE_TEL}
               className="rounded-full bg-ocean px-7 py-3.5 text-base font-semibold text-accent-foreground shadow-lift transition-transform hover:scale-[1.03]"
             >
               {t.hero.call}
+            </a>
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-whatsapp px-7 py-3.5 text-base font-semibold text-whatsapp-foreground shadow-lift transition-transform hover:scale-[1.03]"
+            >
+              {t.hero.whatsapp}
             </a>
             <Link
               to="/events"
