@@ -15,6 +15,7 @@ import photo5 from "@/assets/photo-5.jpg.asset.json";
 
 const PHONE_DISPLAY = "694 931 8998";
 const PHONE_TEL = "tel:+306949318998";
+const WHATSAPP_LINK = "https://wa.me/306949318998";
 const MAPS_LINK =
   "https://www.google.com/maps/search/?api=1&query=JOJO+Porto+Rafti+Λεωφόρος+Αυλακίου+62+Πόρτο+Ράφτη";
 const MAP_EMBED =
@@ -494,6 +495,14 @@ function PageContent() {
                   className="rounded-full bg-primary px-6 py-3 text-center text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
                 >
                   {t.contact.call}
+                </a>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-border bg-background px-6 py-3 text-center text-sm font-semibold transition-colors hover:bg-secondary"
+                >
+                  {t.contact.whatsapp}
                 </a>
               </div>
 

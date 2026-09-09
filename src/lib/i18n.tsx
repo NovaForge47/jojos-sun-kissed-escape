@@ -235,6 +235,7 @@ export const content = {
       hours: "Ανοιχτά καθημερινά, 09:00 – 03:00",
       directions: "Πάρτε οδηγίες",
       call: "Καλέστε μας",
+      whatsapp: "WhatsApp",
       followLabel: "Ακολουθήστε μας",
     },
     leaveReview: {
@@ -475,6 +476,7 @@ export const content = {
       hours: "Open daily, 09:00 – 03:00",
       directions: "Get directions",
       call: "Call us",
+      whatsapp: "WhatsApp",
       followLabel: "Follow us",
     },
     leaveReview: {
