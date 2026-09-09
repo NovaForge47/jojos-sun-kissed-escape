@@ -496,6 +496,14 @@ function PageContent() {
                 >
                   {t.contact.call}
                 </a>
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-border bg-background px-6 py-3 text-center text-sm font-semibold transition-colors hover:bg-secondary"
+                >
+                  {t.contact.whatsapp}
+                </a>
               </div>
 
               <div className="mt-8 border-t border-border pt-6">
