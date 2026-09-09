@@ -16,7 +16,7 @@ export const content = {
       { href: "#about", label: "Σχετικά" },
       { href: "/menu", label: "Μενού" },
       { href: "#gallery", label: "Gallery" },
-      { href: "#events", label: "Events" },
+      { href: "/events", label: "Events" },
       { href: "#reviews", label: "Κριτικές" },
       { href: "#contact", label: "Επικοινωνία" },
     ],
@@ -33,7 +33,19 @@ export const content = {
       subtext: "Beach bar όλη μέρα 🏖️",
       call: "Καλέστε μας",
       map: "Δείτε στον χάρτη",
+      events: "Upcoming Events",
       hours: "Ανοιχτά καθημερινά · 09:00 – 03:00",
+    },
+    eventsPage: {
+      kicker: "μουσική & βραδιές",
+      title: "Upcoming Events",
+      intro:
+        "Οι επόμενες βραδιές μας στο JOJO Porto Rafti. Για κρατήσεις καλέστε στο 694 931 8998.",
+      cta: "Δείτε τα events",
+      alts: [
+        "Αφίσα: Latin Live Party με Cuban Dancers Show, Σάββατο 12 Σεπτεμβρίου, 21:00",
+        "Αφίσα: Live Beach Party με τον Trannos, Κυριακή 13 Σεπτεμβρίου, 17:00",
+      ],
     },
     about: {
       kicker: "beach bar",
@@ -257,7 +269,7 @@ export const content = {
       { href: "#about", label: "About" },
       { href: "/menu", label: "Menu" },
       { href: "#gallery", label: "Gallery" },
-      { href: "#events", label: "Events" },
+      { href: "/events", label: "Events" },
       { href: "#reviews", label: "Reviews" },
       { href: "#contact", label: "Contact" },
     ],
@@ -274,7 +286,19 @@ export const content = {
       subtext: "Beach bar all day 🏖️",
       call: "Call us",
       map: "See on the map",
+      events: "Upcoming Events",
       hours: "Open daily · 09:00 – 03:00",
+    },
+    eventsPage: {
+      kicker: "music & nights",
+      title: "Upcoming Events",
+      intro:
+        "Our next nights at JOJO Porto Rafti. For reservations call +30 694 931 8998.",
+      cta: "See our events",
+      alts: [
+        "Poster: Latin Live Party with Cuban Dancers Show, Saturday 12 September, 21:00",
+        "Poster: Live Beach Party with Trannos, Sunday 13 September, 17:00",
+      ],
     },
     about: {
       kicker: "beach bar",

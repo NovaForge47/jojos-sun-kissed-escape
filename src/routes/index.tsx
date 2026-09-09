@@ -253,10 +253,10 @@ function PageContent() {
           <div className="flex items-center gap-3 md:gap-6">
             <div className="hidden items-center gap-6 md:flex">
               {t.nav.map((item) =>
-                item.href === "/menu" ? (
+                item.href === "/menu" || item.href === "/events" ? (
                   <Link
                     key={item.href}
-                    to="/menu"
+                    to={item.href === "/menu" ? "/menu" : "/events"}
                     className={`text-sm transition-colors hover:text-ocean ${
                       scrolled ? "text-muted-foreground" : "text-white/90 drop-shadow"
                     }`}
@@ -324,6 +324,12 @@ function PageContent() {
             >
               {t.hero.call}
             </a>
+            <Link
+              to="/events"
+              className="rounded-full bg-champagne px-7 py-3.5 text-base font-semibold text-primary shadow-lift transition-transform hover:scale-[1.03]"
+            >
+              {t.hero.events}
+            </Link>
             <a
               href={MAPS_LINK}
               target="_blank"
@@ -373,26 +379,20 @@ function PageContent() {
           </div>
         </section>
 
-        {/* ---------- Events ----------
-            TEMPLATE SECTION: no real event data yet.
-            Add upcoming events to an `events` array (title, date, time,
-            description, optional image) and render them in the grid.
-            The empty state shows until then. */}
+        {/* ---------- Events teaser ----------
+            Real event posters live on the /events page (src/routes/events.tsx). */}
         <section id="events" className="mx-auto max-w-5xl px-5 py-20 sm:py-28">
           <SectionTitle kicker={t.events.kicker} title={t.events.title} />
           <div className="surface-card mx-auto max-w-2xl px-6 py-12 text-center sm:px-10">
             <Wave className="mx-auto" />
-            <h3 className="mt-4 text-2xl">{t.events.soon}</h3>
-            <p className="mt-3 text-muted-foreground">{t.events.text}</p>
+            <p className="mt-4 text-muted-foreground">{t.eventsPage.intro}</p>
             <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-              <a
-                href="https://www.instagram.com/jojoportorafti"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/events"
                 className="rounded-full bg-ocean px-6 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:scale-[1.03]"
               >
-                {t.events.instagram}
-              </a>
+                {t.eventsPage.cta}
+              </Link>
               <a
                 href={PHONE_TEL}
                 className="rounded-full border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-secondary"
@@ -402,6 +402,7 @@ function PageContent() {
             </div>
           </div>
         </section>
+
 
         {/* ---------- Κριτικές ---------- */}
         <section id="reviews" className="bg-sand py-20 sm:py-28">
