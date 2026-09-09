@@ -286,7 +286,19 @@ export const content = {
       subtext: "Beach bar all day 🏖️",
       call: "Call us",
       map: "See on the map",
+      events: "Upcoming Events",
       hours: "Open daily · 09:00 – 03:00",
+    },
+    eventsPage: {
+      kicker: "music & nights",
+      title: "Upcoming Events",
+      intro:
+        "Our next nights at JOJO Porto Rafti. For reservations call +30 694 931 8998.",
+      cta: "See our events",
+      alts: [
+        "Poster: Latin Live Party with Cuban Dancers Show, Saturday 12 September, 21:00",
+        "Poster: Live Beach Party with Trannos, Sunday 13 September, 17:00",
+      ],
     },
     about: {
       kicker: "beach bar",
