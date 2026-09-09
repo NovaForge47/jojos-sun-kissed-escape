@@ -324,6 +324,12 @@ function PageContent() {
             >
               {t.hero.call}
             </a>
+            <Link
+              to="/events"
+              className="rounded-full bg-champagne px-7 py-3.5 text-base font-semibold text-primary shadow-lift transition-transform hover:scale-[1.03]"
+            >
+              {t.hero.events}
+            </Link>
             <a
               href={MAPS_LINK}
               target="_blank"
