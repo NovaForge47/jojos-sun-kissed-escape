@@ -50,6 +50,8 @@
   --color-champagne-deep: var(--champagne-deep);
   --color-ocean: var(--ocean);
   --color-ocean-soft: var(--ocean-soft);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --shadow-soft: 0 18px 50px -22px oklch(0.42 0.05 65 / 0.35);
@@ -83,6 +85,8 @@
   --champagne-deep: oklch(0.72 0.065 55);
   --ocean: oklch(0.62 0.09 232);
   --ocean-soft: oklch(0.9 0.04 225);
+  --whatsapp: oklch(0.72 0.18 145);
+  --whatsapp-foreground: oklch(0.99 0 0);
 }
 
 @layer base {
