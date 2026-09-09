@@ -33,7 +33,19 @@ export const content = {
       subtext: "Beach bar όλη μέρα 🏖️",
       call: "Καλέστε μας",
       map: "Δείτε στον χάρτη",
+      events: "Upcoming Events",
       hours: "Ανοιχτά καθημερινά · 09:00 – 03:00",
+    },
+    eventsPage: {
+      kicker: "μουσική & βραδιές",
+      title: "Upcoming Events",
+      intro:
+        "Οι επόμενες βραδιές μας στο JOJO Porto Rafti. Για κρατήσεις καλέστε στο 694 931 8998.",
+      cta: "Δείτε τα events",
+      alts: [
+        "Αφίσα: Latin Live Party με Cuban Dancers Show, Σάββατο 12 Σεπτεμβρίου, 21:00",
+        "Αφίσα: Live Beach Party με τον Trannos, Κυριακή 13 Σεπτεμβρίου, 17:00",
+      ],
     },
     about: {
       kicker: "beach bar",
