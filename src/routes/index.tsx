@@ -253,10 +253,10 @@ function PageContent() {
           <div className="flex items-center gap-3 md:gap-6">
             <div className="hidden items-center gap-6 md:flex">
               {t.nav.map((item) =>
-                item.href === "/menu" ? (
+                item.href === "/menu" || item.href === "/events" ? (
                   <Link
                     key={item.href}
-                    to="/menu"
+                    to={item.href === "/menu" ? "/menu" : "/events"}
                     className={`text-sm transition-colors hover:text-ocean ${
                       scrolled ? "text-muted-foreground" : "text-white/90 drop-shadow"
                     }`}
