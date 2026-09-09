@@ -15,6 +15,7 @@ import photo5 from "@/assets/photo-5.jpg.asset.json";
 
 const PHONE_DISPLAY = "694 931 8998";
 const PHONE_TEL = "tel:+306949318998";
+const WHATSAPP_LINK = "https://wa.me/306949318998";
 const MAPS_LINK =
   "https://www.google.com/maps/search/?api=1&query=JOJO+Porto+Rafti+Λεωφόρος+Αυλακίου+62+Πόρτο+Ράφτη";
 const MAP_EMBED =
