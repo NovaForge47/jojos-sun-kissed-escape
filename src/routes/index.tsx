@@ -309,6 +309,7 @@ function PageContent() {
 
   return (
     <div className="min-h-screen bg-background" lang={lang}>
+      <SeasonalPopup />
       {/* ---------- Top nav ---------- */}
       <nav
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
