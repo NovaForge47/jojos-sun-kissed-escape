@@ -203,6 +203,91 @@ function GalleryCarousel({ alts }: { alts: readonly string[] }) {
   );
 }
 
+const SEASONAL_STORAGE_KEY = "jojo-seasonal-notice-dismissed";
+
+function SeasonalPopup() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (localStorage.getItem(SEASONAL_STORAGE_KEY) === "1") return;
+    } catch {
+      /* localStorage unavailable — show popup */
+    }
+    const timer = setTimeout(() => setOpen(true), 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const close = () => {
+    setOpen(false);
+    try {
+      localStorage.setItem(SEASONAL_STORAGE_KEY, "1");
+    } catch {
+      /* ignore */
+    }
+  };
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  if (!open) return null;
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Ανακοίνωση λήξης σεζόν"
+      onClick={close}
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="fade-up surface-card relative w-full max-w-md px-8 py-10 text-center sm:px-10"
+      >
+        <button
+          type="button"
+          onClick={close}
+          aria-label="Κλείσιμο"
+          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-muted-foreground transition-colors hover:bg-ocean hover:text-accent-foreground"
+        >
+          ✕
+        </button>
+        <div className="flex justify-center">
+          <Wave className="h-4 w-28 text-ocean" />
+        </div>
+        <div className="mt-6 space-y-4 text-base leading-relaxed sm:text-lg">
+          <p className="font-semibold text-foreground">
+            🌊 Από 28-9 κλείνουμε για τη σεζόν
+          </p>
+          <p className="text-muted-foreground">
+            Ήταν ένα υπέροχο καλοκαίρι μαζί σας — σας ευχαριστούμε!
+          </p>
+          <p className="text-muted-foreground">
+            Σας περιμένουμε ξανά το επόμενο καλοκαίρι ☀️
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={close}
+          className="mt-8 rounded-full bg-ocean px-8 py-3 text-base font-semibold text-accent-foreground shadow-lift transition-transform hover:scale-[1.03]"
+        >
+          Κατάλαβα
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function Index() {
   return (
     <LanguageProvider>
@@ -224,6 +309,7 @@ function PageContent() {
 
   return (
     <div className="min-h-screen bg-background" lang={lang}>
+      <SeasonalPopup />
       {/* ---------- Top nav ---------- */}
       <nav
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
