@@ -3,15 +3,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { LanguageProvider, useLanguage } from "@/lib/i18n";
 import { LangToggle, SectionTitle } from "@/components/sections";
 import logoImg from "@/assets/logo.png";
-import eventLatin from "@/assets/event-latin.jpg.asset.json";
-import eventTrannos from "@/assets/event-trannos.jpg.asset.json";
 
 const PHONE_TEL = "tel:+306949318998";
 
 // Upcoming events are published as poster images. To add a new event,
-// upload the poster with lovable-assets and append it to POSTERS below,
+// save the poster in public/images and append its local path to POSTERS below,
 // then add a matching alt text in eventsPage.alts (el + en) in src/lib/i18n.tsx.
-const POSTERS = [eventLatin.url, eventTrannos.url];
+const POSTERS = ["/images/event-latin.jpg", "/images/event-trannos.jpg"];
 
 export const Route = createFileRoute("/events")({
   component: EventsPage,

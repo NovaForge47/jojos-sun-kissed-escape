@@ -5,13 +5,7 @@ import { LanguageProvider, useLanguage } from "@/lib/i18n";
 import { LangToggle, SectionTitle, Wave } from "@/components/sections";
 
 
-import heroAsset from "@/assets/hero-sunset.jpg.asset.json";
 import logoImg from "@/assets/logo.png";
-import photo1 from "@/assets/photo-1.jpg.asset.json";
-import photo2 from "@/assets/photo-2.jpg.asset.json";
-import photo3 from "@/assets/photo-3.jpg.asset.json";
-import photo4 from "@/assets/photo-4.jpg.asset.json";
-import photo5 from "@/assets/photo-5.jpg.asset.json";
 
 const PHONE_DISPLAY = "694 931 8998";
 const PHONE_TEL = "tel:+306949318998";
@@ -22,7 +16,7 @@ const MAP_EMBED =
   "https://www.google.com/maps?q=" +
   encodeURIComponent("Λεωφόρος Αυλακίου 62, Πόρτο Ράφτη 19003") +
   "&hl=el&z=15&output=embed";
-const OG_IMAGE = "https://jojo.gr" + photo4.url;
+const OG_IMAGE = "https://jojo.gr/images/photo-4.jpg";
 const GOOGLE_REVIEW_LINK =
   "https://www.google.com/search?client=safari&hs=EltV&sca_esv=d777865217e22ae8&hl=en-gr&sxsrf=APpeQnsMJYrHFVn_1NusD0fGTX0tFLwHhg:1788442797076&q=buddha+all-day+beach+bar+restaurant+porto+rafti+reviews&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4r9o8EtIr7w4auRdy15uM4Z4EHnbQu6rvVfO9wYzZ2msJbW-m2eVaFxBbTPfmUdG2Ey6UXDIdCvfr5q3ED1pp-sYosbGgf0ddhLt03GGUlGK0E6BmwDE7ISvc9eESAmKfDSoPCcMeP61r1GDt4_sN5Uzfk3HBIgh-mGgg_tSyI2upuY7Mifwx9G8KEldZmpOzNXx_REX_zmdltbtWYnuyiHnaPXmc&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_50HyrpuqFI335dM5CnVEHF9MSCyffo3V-4PSzLyvtyd8h9xJA7E_3bFmCD5MdVwV4DO9IVKTz-ZJwRpuMsKeyb5n0HPh5pXEnyNdAoJbDPvn4bcv3_VMYjVEUjgMBY1bjdIGhU%3D&sa=X&ved=2ahUKEwjQnfvMxNKWAxUHRvEDHct3CbcQxKsJKAF6BAgTEAE&ictx=1";
 const TRIPADVISOR_REVIEW_LINK =
@@ -76,7 +70,7 @@ export const Route = createFileRoute("/")({
           description:
             "All day beach bar στο Πόρτο Ράφτη με ξαπλώστρες στη θάλασσα, cocktails και φαγητό, ανοιχτά καθημερινά 09:00–03:00.",
           url: "https://jojo.gr/",
-          image: [OG_IMAGE, "https://jojo.gr" + photo3.url],
+          image: [OG_IMAGE, "https://jojo.gr/images/photo-3.jpg"],
           telephone: "+306949318998",
           email: "jojoportorafti@gmail.com",
           priceRange: "€€",
@@ -137,7 +131,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const GALLERY_SRC = [photo3.url, photo2.url, photo4.url, photo1.url, photo5.url];
+const GALLERY_SRC = ["/images/photo-3.jpg", "/images/photo-2.jpg", "/images/photo-4.jpg", "/images/photo-1.jpg", "/images/photo-5.jpg"];
 
 const SOCIALS = [
   { label: "Instagram", href: "https://www.instagram.com/jojoportorafti" },
@@ -376,7 +370,7 @@ function PageContent() {
       {/* ---------- Hero ---------- */}
       <header id="hero" className="relative isolate min-h-[100svh] overflow-hidden">
         <img
-          src={heroAsset.url}
+          src="/images/hero-sunset.jpg"
           alt={t.hero.imageAlt}
           width={1179}
           height={771}
